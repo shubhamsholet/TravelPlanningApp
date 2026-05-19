@@ -1,0 +1,109 @@
+<div class="container">
+  <div *ngIf="loading()" style="text-align: center; padding: 3rem">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading() && destination()">
+    <h1 style="margin-bottom: 2rem">Book Your Trip to {{ destination()?.name }}</h1>
+
+    <div class="booking-grid">
+      <!-- Destination Details -->
+      <mat-card>
+        <img
+          mat-card-image
+          [src]="destination()?.image"
+          [alt]="destination()?.name"
+          style="height: 250px; object-fit: cover"
+        />
+        <mat-card-content class="mt-3">
+          <h2>{{ destination()?.name }}</h2>
+          <p>{{ destination()?.description }}</p>
+          <div style="margin-top: 1rem">
+            <div class="price-detail">
+              <span>Price per person:</span>
+              <strong>${{ destination()?.price }}</strong>
+            </div>
+            <div class="price-detail">
+              <span>Duration:</span>
+              <span>{{ destination()?.duration }}</span>
+            </div>
+            <div class="price-detail">
+              <span>Rating:</span>
+              <span>⭐ {{ destination()?.rating }}/5</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Booking Form -->
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Booking Details</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="mt-3">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Full Name</mat-label>
+            <input matInput [(ngModel)]="bookingData.userName" required />
+            <mat-icon matPrefix>person</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="bookingData.email" required />
+            <mat-icon matPrefix>email</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Travel Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [(ngModel)]="bookingData.travelDate"
+              required
+            />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-icon matPrefix>calendar_today</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Number of Guests</mat-label>
+            <input
+              matInput
+              type="number"
+              min="1"
+              max="10"
+              [(ngModel)]="bookingData.guests"
+              required
+            />
+            <mat-icon matPrefix>group</mat-icon>
+          </mat-form-field>
+
+          <div style="margin-top: 1.5rem">
+            <div class="price-detail">
+              <span>Subtotal ({{ bookingData.guests }} × ${{ destination()?.price }})</span>
+              <span>${{ destination()!.price * bookingData.guests }}</span>
+            </div>
+            <div class="price-detail">
+              <span>Taxes & Fees</span>
+              <span>$0 (Demo)</span>
+            </div>
+            <div class="total">
+              <span>Total Amount</span>
+              <span>${{ totalPrice }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions class="mt-2">
+          <button mat-button color="warn" [routerLink]="['/destinations']">Cancel</button>
+          <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="submitting()">
+            <mat-icon>check_circle</mat-icon>
+            {{ submitting() ? 'Processing...' : 'Confirm Booking' }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

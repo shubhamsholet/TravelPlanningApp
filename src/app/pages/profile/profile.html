@@ -1,0 +1,44 @@
+<div class="profile-container">
+  <mat-card>
+    <div class="profile-header">
+      <mat-icon class="avatar">account_circle</mat-icon>
+      <h2 style="margin: 0;">{{ user()?.name || 'Traveler' }}</h2>
+      <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Travel Enthusiast</p>
+    </div>
+
+    <mat-card-content style="padding: 2rem;">
+      <div class="info-row">
+        <div class="info-label">Full Name</div>
+        <div class="info-value">{{ user()?.name || 'Not set' }}</div>
+      </div>
+      
+      <div class="info-row">
+        <div class="info-label">Email</div>
+        <div class="info-value">{{ user()?.email || 'Not set' }}</div>
+      </div>
+      
+      <div class="info-row">
+        <div class="info-label">Member Since</div>
+        <div class="info-value">{{ '2024' }}</div>
+      </div>
+      
+      <div class="info-row">
+        <div class="info-label">Total Trips</div>
+        <div class="info-value">{{ '0' }}</div>
+      </div>
+
+      <mat-divider style="margin: 2rem 0;"></mat-divider>
+
+      <div style="display: flex; gap: 1rem; justify-content: center;">
+        <button mat-raised-button color="primary" routerLink="/dashboard" >
+          <mat-icon>dashboard</mat-icon>
+          Go to Dashboard
+        </button>
+        <button mat-raised-button color="warn" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

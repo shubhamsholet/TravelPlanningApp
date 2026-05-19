@@ -1,0 +1,33 @@
+.container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .full-width {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    .price-detail {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .total {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #1976d2;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 2px solid #1976d2;
+    }
+    @media (max-width: 768px) {
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+    }

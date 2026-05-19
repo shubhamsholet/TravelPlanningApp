@@ -1,0 +1,67 @@
+<div class="container">
+  <h1 style="margin-bottom: 2rem;">My Bookings</h1>
+
+  <div *ngIf="loading()" style="text-align: center; padding: 3rem;">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p style="margin-top: 1rem;">Loading your bookings...</p>
+  </div>
+
+  <div *ngIf="!loading() && bookings().length === 0" class="no-bookings">
+    <mat-icon style="font-size: 4rem; width: auto; height: auto; color: #ccc;">receipt</mat-icon>
+    <h2 style="margin: 1rem 0;">No Bookings Yet</h2>
+    <p style="color: #666; margin-bottom: 1.5rem;">You haven't made any bookings yet.</p>
+    <button mat-raised-button color="primary" routerLink="/destinations">
+      <mat-icon>explore</mat-icon>
+      Explore Destinations
+    </button>
+  </div>
+
+  <div *ngIf="!loading() && bookings().length > 0">
+    <mat-card class="booking-card" *ngFor="let booking of bookings()">
+      <mat-card-content>
+        <div class="booking-header">
+          <div>
+            <h2 style="margin: 0 0 0.5rem 0;">{{ booking.destinationName }}</h2>
+            <div class="status-badge" [class.status-confirmed]="booking.status === 'confirmed'" [class.status-cancelled]="booking.status === 'cancelled'">
+              {{ booking.status | uppercase }}
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 1.5rem; font-weight: bold; color: #1976d2;">${{ booking.totalPrice }}</div>
+            <!-- <div style="font-size: 0.875rem; color: #666;">Booking ID: {{ booking._id }}</div> -->
+          </div>
+        </div>
+
+        <div class="booking-details">
+          <div class="detail-item">
+            <span class="detail-label">Traveler</span>
+            <span class="detail-value">{{ booking.userName }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Travel Date</span>
+            <span class="detail-value">{{ formatDate(booking.travelDate) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Guests</span>
+            <span class="detail-value">{{ booking.guests }} {{ booking.guests === 1 ? 'Guest' : 'Guests' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Booked On</span>
+            <span class="detail-value">{{ formatDate(booking.bookingDate) }}</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+          <button mat-stroked-button color="primary" [routerLink]="['/itinerary', booking._id]" *ngIf="booking.status === 'confirmed'">
+            <mat-icon>map</mat-icon>
+            View Itinerary
+          </button>
+          <button mat-stroked-button color="warn" (click)="cancelBooking(booking._id)" *ngIf="booking.status === 'confirmed'">
+            <mat-icon>cancel</mat-icon>
+            Cancel Booking
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="container-custom" style="padding: 2rem">
+  <h1 style="text-align: center; margin-bottom: 2rem; color: #1976d2">Explore Destinations</h1>
+
+  <!-- Search Box -->
+  <div class="search-box">
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label>Search destinations</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearch()"
+        placeholder="e.g., Paris, Tokyo"
+      />
+      <mat-icon matSuffix *ngIf="searchQuery" (click)="clearSearch()" style="cursor: pointer"
+        >close</mat-icon
+      >
+    </mat-form-field>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading()" style="text-align: center; padding: 3rem">
+    <mat-spinner diameter="50" style="margin: 0 auto"></mat-spinner>
+  </div>
+
+  <!-- Destinations Grid -->
+  <div class="destination-grid" *ngIf="!loading()">
+    <mat-card *ngFor="let dest of filteredDestinations()">
+      <img mat-card-image [src]="dest.image" [alt]="dest.name" />
+      <mat-card-content class="mt-2">
+        <mat-card-title>{{ dest.name }}</mat-card-title>
+        <div class="rating">
+          <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]"
+            >star{{ star <= dest.rating ? '' : '_border' }}</mat-icon
+          >
+          <span style="margin-left: 8px">({{ dest.rating }})</span>
+        </div>
+        <p style="margin: 12px 0">{{ dest.description | slice: 0 : 100 }}...</p>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 12px;
+          "
+        >
+          <div>
+            <span class="price">${{ dest.price }}</span>
+            <span class="duration"> / {{ dest.duration }}</span>
+          </div>
+          <span class="duration">{{ dest.duration }}</span>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/booking', dest._id]"
+          style="width: 100%"
+        >
+          Book Now
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- No Results -->
+    <div
+      *ngIf="filteredDestinations().length === 0"
+      style="text-align: center; grid-column: 1/-1; padding: 3rem"
+    >
+      <mat-icon style="font-size: 4rem; width: auto; height: auto; color: #999">search</mat-icon>
+      <h3>No destinations found</h3>
+      <p>Try searching with different keywords</p>
+      <button mat-button color="primary" (click)="clearSearch()">Clear Search</button>
+    </div>
+  </div>
+</div>
+<app-travel-chatbot></app-travel-chatbot>

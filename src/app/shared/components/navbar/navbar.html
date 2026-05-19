@@ -1,0 +1,62 @@
+<mat-toolbar color="primary">
+  <!-- Brand Logo -->
+  <span class="brand" routerLink="/dashboard">✈️ TravelApp</span>
+  
+  <span class="spacer"></span>
+  
+  <!-- Desktop Menu -->
+  <div class="desktop-menu">
+    <button mat-button routerLink="/destinations" routerLinkActive="active-link">
+      <mat-icon>explore</mat-icon> Destinations
+    </button>
+    
+    <button mat-button routerLink="/my-bookings" routerLinkActive="active-link">
+      <mat-icon>receipt</mat-icon> My Bookings
+    </button>
+    
+    <button mat-button routerLink="/dashboard" routerLinkActive="active-link">
+      <mat-icon>dashboard</mat-icon> Dashboard
+    </button>
+    
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+  
+  <!-- Mobile Menu (Hamburger) -->
+  <div class="mobile-menu">
+    <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  
+  <!-- Desktop User Menu -->
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/profile">
+      <mat-icon>person</mat-icon> Profile
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout
+    </button>
+  </mat-menu>
+  
+  <!-- Mobile Menu Items -->
+  <mat-menu #mobileMenu="matMenu">
+    <button mat-menu-item routerLink="/destinations">
+      <mat-icon>explore</mat-icon> Destinations
+    </button>
+    <button mat-menu-item routerLink="/my-bookings">
+      <mat-icon>receipt</mat-icon> My Bookings
+    </button>
+    <button mat-menu-item routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon> Dashboard
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="/profile">
+      <mat-icon>person</mat-icon> Profile
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>

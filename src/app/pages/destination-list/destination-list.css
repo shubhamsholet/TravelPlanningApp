@@ -1,0 +1,45 @@
+.search-box {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 2rem auto;
+    }
+    .destination-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+    mat-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+    mat-card:hover {
+      transform: translateY(-5px);
+    }
+    mat-card img {
+      height: 200px;
+      object-fit: cover;
+    }
+    .rating {
+      color: #ffc107;
+      margin-top: 8px;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #1976d2;
+    }
+    .duration {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 420px) {
+  .destination-grid {
+    grid-template-columns: 1fr; 
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+}

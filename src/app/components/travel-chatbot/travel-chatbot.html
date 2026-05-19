@@ -1,0 +1,46 @@
+ <div class="chatbot-container" [class.open]="isOpen()">
+      <!-- Chat Button -->
+      <button class="chat-toggle-btn" (click)="toggleChat()" mat-fab color="primary">
+        <mat-icon>{{ isOpen() ? 'close' : 'chat' }}</mat-icon>
+      </button>
+
+      <!-- Chat Window -->
+      <div class="chat-window" *ngIf="isOpen()">
+        <mat-card>
+          <mat-card-header>
+            <mat-icon mat-card-avatar>flight_takeoff</mat-icon>
+            <mat-card-title>Travel Assistant</mat-card-title>
+            <mat-card-subtitle>I only answer travel & destination questions! ✈️</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content class="chat-messages">
+            <div *ngFor="let msg of messages()" class="message" [class.user-message]="msg.isUser" [class.bot-message]="!msg.isUser">
+              <div class="message-bubble">
+                <span>{{ msg.text }}</span>
+                <small class="time">{{ msg.timestamp | date:'shortTime' }}</small>
+              </div>
+            </div>
+            <div *ngIf="isLoading()" class="message bot-message">
+              <div class="message-bubble typing-indicator">
+                <span>.</span><span>.</span><span>.</span>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <div class="chat-input">
+              <input 
+                matInput 
+                placeholder="Ask about destinations, travel tips, prices..." 
+                [(ngModel)]="userInput" 
+                (keyup.enter)="sendMessage()"
+                [disabled]="isLoading()"
+              >
+              <button mat-icon-button color="primary" (click)="sendMessage()" [disabled]="isLoading() || !userInput.trim()">
+                <mat-icon>send</mat-icon>
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>

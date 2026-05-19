@@ -1,0 +1,45 @@
+.spacer {
+      flex: 1;
+    }
+    
+    .desktop-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .mobile-menu {
+      display: none;
+    }
+    
+    .brand {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    
+    .active-link {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+    
+    /* Mobile view */
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+      
+      .brand {
+        font-size: 1rem;
+      }
+    }
+    
+    mat-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }

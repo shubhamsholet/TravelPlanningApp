@@ -1,0 +1,31 @@
+ .profile-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .profile-header {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 12px 12px 0 0;
+    }
+    .avatar {
+      font-size: 4rem;
+      width: auto;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .info-row {
+      display: flex;
+      padding: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .info-label {
+      width: 120px;
+      font-weight: 600;
+      color: #666;
+    }
+    .info-value {
+      flex: 1;
+    }

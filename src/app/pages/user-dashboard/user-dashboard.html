@@ -1,0 +1,105 @@
+<div class="dashboard-container">
+  <div *ngIf="loading()" style="text-align: center; padding: 3rem;">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p style="margin-top: 1rem;">Loading your dashboard...</p>
+  </div>
+
+  <div *ngIf="!loading()">
+    <!-- Welcome Header -->
+    <div class="welcome-header">
+      <h1 style="margin: 0 0 0.5rem 0;">Welcome back, {{ currentUser()?.name || 'Traveler' }}! ✈️</h1>
+      <p style="margin: 0; opacity: 0.9;">Your next adventure is just a click away</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-icon style="font-size: 2rem; color: #1976d2;">receipt</mat-icon>
+        <div class="stat-number">{{ stats.totalBookings }}</div>
+        <div>Total Bookings</div>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-icon style="font-size: 2rem; color: #1976d2;">attach_money</mat-icon>
+        <div class="stat-number">${{ stats.totalSpent }}</div>
+        <div>Total Spent</div>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-icon style="font-size: 2rem; color: #1976d2;">event</mat-icon>
+        <div class="stat-number">{{ stats.upcomingTrips }}</div>
+        <div>Upcoming Trips</div>
+      </mat-card>
+    </div>
+
+    <!-- Quick Links Section -->
+    <mat-card style="margin-bottom: 2rem;">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>bolt</mat-icon>
+        <mat-card-title>Quick Links</mat-card-title>
+        <mat-card-subtitle>Jump to any section</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="quick-links">
+          <button mat-raised-button color="primary" routerLink="/destinations" class="quick-link-btn">
+            <mat-icon>explore</mat-icon>
+            Browse Destinations
+          </button>
+          <button mat-raised-button color="accent" routerLink="/my-bookings" class="quick-link-btn">
+            <mat-icon>receipt</mat-icon>
+            My Bookings
+          </button>
+          <button mat-raised-button routerLink="/profile" class="quick-link-btn">
+            <mat-icon>person</mat-icon>
+            My Profile
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Recent Bookings -->
+    <mat-card class="recent-bookings">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>history</mat-icon>
+        <mat-card-title>Recent Bookings</mat-card-title>
+        <mat-card-subtitle>Your latest trip bookings</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="recentBookings().length === 0" style="text-align: center; padding: 2rem;">
+          <mat-icon style="font-size: 3rem; color: #ccc;">receipt</mat-icon>
+          <p style="margin-top: 1rem;">No bookings yet. Start your first adventure!</p>
+          <button mat-raised-button color="primary" routerLink="/destinations" style="margin-top: 1rem;">
+            Book Your First Trip
+          </button>
+        </div>
+
+        <div *ngFor="let booking of recentBookings()">
+          <div class="booking-item">
+            <div>
+              <h3 style="margin: 0 0 0.25rem 0;">{{ booking.destinationName }}</h3>
+              <div style="display: flex; gap: 1rem; font-size: 0.875rem; color: #666;">
+                <span>{{ formatDate(booking.travelDate) }}</span>
+                <span>{{ booking.guests }} {{ booking.guests === 1 ? 'Guest' : 'Guests' }}</span>
+                <span [style.color]="booking.status === 'confirmed' ? '#4caf50' : '#f44336'">
+                  {{ booking.status | uppercase }}
+                </span>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: bold; color: #1976d2;">${{ booking.totalPrice }}</div>
+              <button mat-button color="primary" [routerLink]="['/itinerary', booking._id]" *ngIf="booking.status === 'confirmed'">
+                View Details →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="recentBookings().length > 0" style="text-align: center; margin-top: 1rem;">
+          <button mat-stroked-button routerLink="/my-bookings">
+            View All Bookings
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

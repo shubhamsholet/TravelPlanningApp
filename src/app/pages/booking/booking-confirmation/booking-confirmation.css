@@ -1,0 +1,41 @@
+.container {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .success-icon {
+      font-size: 4rem;
+      width: auto;
+      height: auto;
+      color: #4caf50;
+      margin-bottom: 1rem;
+    }
+    .booking-details {
+      margin: 2rem 0;
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .detail-label {
+      font-weight: 600;
+      color: #666;
+    }
+    .detail-value {
+      font-weight: 500;
+    }
+    .status-confirmed {
+      color: #4caf50;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
