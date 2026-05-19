@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Paris, France",
+    "image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400",
+    "price": 899,
+    "duration": "5 Days",
+    "rating": 4.8,
+    "description": "Eiffel Tower, Louvre Museum, Seine River cruises, and world-class cuisine."
+  },
+  {
+    "id": 2,
+    "name": "Bali, Indonesia",
+    "image": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400",
+    "price": 699,
+    "duration": "7 Days",
+    "rating": 4.9,
+    "description": "Tropical paradise with stunning beaches, rice terraces, and spiritual culture."
+  },
+  {
+    "id": 3,
+    "name": "New York, USA",
+    "image": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400",
+    "price": 1099,
+    "duration": "4 Days",
+    "rating": 4.7,
+    "description": "Times Square, Central Park, Broadway shows, and iconic skyline views."
+  },
+  {
+    "id": 4,
+    "name": "Tokyo, Japan",
+    "image": "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=400",
+    "price": 1299,
+    "duration": "6 Days",
+    "rating": 4.9,
+    "description": "Futuristic city blending tradition with technology, amazing sushi and culture."
+  },
+  {
+    "id": 5,
+    "name": "Rome, Italy",
+    "image": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400",
+    "price": 799,
+    "duration": "5 Days",
+    "rating": 4.8,
+    "description": "Colosseum, Vatican City, amazing pasta, and ancient history everywhere."
+  },
+  {
+    "id": 6,
+    "name": "Dubai, UAE",
+    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400",
+    "price": 999,
+    "duration": "4 Days",
+    "rating": 4.6,
+    "description": "Burj Khalifa, luxury shopping, desert safaris, and modern architecture."
+  }
+]
