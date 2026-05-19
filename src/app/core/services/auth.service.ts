@@ -21,11 +21,11 @@
 //   }
 
 //   login(credentials: LoginCredentials): Observable<any> {
-//     const mockUser = { 
-//       id: '1', 
-//       name: credentials.email.split('@')[0], 
-//       email: credentials.email, 
-//       role: 'user' 
+//     const mockUser = {
+//       id: '1',
+//       name: credentials.email.split('@')[0],
+//       email: credentials.email,
+//       role: 'user'
 //     };
 
 //     if (environment.mockData) {
@@ -94,7 +94,7 @@ export interface RegisterData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = environment.apiUrl;
@@ -103,6 +103,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.loadStoredUser();
+    console.log('apiUrl:', this.apiUrl);
   }
 
   private loadStoredUser(): void {
@@ -120,7 +121,7 @@ export class AuthService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('currentUser', JSON.stringify(response));
         this.currentUserSignal.set(response);
-      })
+      }),
     );
   }
 
@@ -130,7 +131,7 @@ export class AuthService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('currentUser', JSON.stringify(response));
         this.currentUserSignal.set(response);
-      })
+      }),
     );
   }
 

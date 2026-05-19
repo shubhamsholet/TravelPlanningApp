@@ -7,10 +7,10 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/login/login').then((m) => m.LoginComponent),
   },
-    {
-      path: 'register',
-      loadComponent: () => import('./pages/register/register').then(m => m.RegisterComponent)
-    },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register').then((m) => m.RegisterComponent),
+  },
   {
     path: 'destinations',
     loadComponent: () =>
@@ -50,15 +50,16 @@ export const routes: Routes = [
   //     loadComponent: () => import('./pages/saved-itineraries/saved-itineraries.component').then(m => m.SavedItinerariesComponent),
   //     canActivate: [AuthGuard]
   //   },
-    {
-      path: 'dashboard',
-      loadComponent: () => import('./pages/user-dashboard/user-dashboard').then(m => m.UserDashboardComponent),
-      canActivate: [AuthGuard]
-    },
-    {
-      path: 'profile',
-      loadComponent: () => import('./pages/profile/profile').then(m => m.ProfileComponent),
-      canActivate: [AuthGuard]
-    },
-  { path: '**', redirectTo: '/destinations' },
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./pages/user-dashboard/user-dashboard').then((m) => m.UserDashboardComponent),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./pages/profile/profile').then((m) => m.ProfileComponent),
+    canActivate: [AuthGuard],
+  },
+  { path: '**', redirectTo: '/register' },
 ];

@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthService } from '../../../core/services/auth.service';
-import { MatDivider } from "@angular/material/divider";
+import { MatDivider } from '@angular/material/divider';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -19,16 +20,22 @@ import { MatDivider } from "@angular/material/divider";
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatDivider
-],
+    MatDivider,
+  ],
   templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css']
+  styleUrls: ['./navbar.css'],
 })
 export class NavbarComponent {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService,
+  ) {}
 
   logout(): void {
     this.authService.logout();
-    window.location.href = '/login';
+    this.toastr.success('Logged out successfully');
+    // this.router.navigate(['/login']);
+    this.router.navigateByUrl('/login');
   }
 }
